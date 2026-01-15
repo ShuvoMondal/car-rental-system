@@ -22,11 +22,14 @@ export const bookings = pgTable("bookings", {
     updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const vechicaleStatusEnum = pgEnum("vechicale_status", ["booked", "avaliable", "unavaliable"]);
+
 export const vehicles = pgTable("vehicles", {
     id: serial("id").primaryKey(),
     name: text("name").notNull(),
     description: text("description").notNull(),
     rentPerDay: decimal("rent_per_day").notNull(),
+    status: vechicaleStatusEnum("status").default("avaliable"),
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
